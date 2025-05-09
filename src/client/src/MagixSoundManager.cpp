@@ -102,7 +102,7 @@ void MagixSoundManager::updateMusic(const FrameEvent &evt)
 }
 void MagixSoundManager::updateLoopedSounds(const Vector3 &camPosition, const Real &timeElapsed)
 {
-	list<const LoopedSound>::type::iterator it = loopedSound.begin();
+	list<LoopedSound>::type::iterator it = loopedSound.begin();
 	while (it != loopedSound.end())
 	{
 		LoopedSound *sound = &*it;
@@ -239,7 +239,9 @@ void MagixSoundManager::playLoopedSound(const char *type, SceneNode *node, const
 	tSound.delay = delay;
 	loopedSound.push_back(tSound);
 }
-const list<const LoopedSound>::type::iterator MagixSoundManager::stopLoopedSound(const list<const LoopedSound>::type::iterator &it)
+
+// we may want to change the iterator to const_iterator ? just a note.
+const list<LoopedSound>::type::iterator MagixSoundManager::stopLoopedSound(const list<LoopedSound>::type::iterator &it)
 {
 	if (!mSoundMgr)return loopedSound.end();
 
@@ -253,7 +255,7 @@ void MagixSoundManager::stopLoopedSoundByNode(SceneNode *node, const char *type)
 	if (!node)return;
 
 	const int tLoopedSound = (type == "" ? INVALID_SOUND_INDEX : mSoundMgr->CreateLoopedSound(String(type)));
-	list<const LoopedSound>::type::iterator it = loopedSound.begin();
+	list<LoopedSound>::type::iterator it = loopedSound.begin();
 	while (it != loopedSound.end())
 	{
 		LoopedSound *sound = &*it;
@@ -265,7 +267,7 @@ bool MagixSoundManager::hasLoopedSound(const char *type, SceneNode *node)
 {
 	if (!mSoundMgr)return false;
 	const int tLoopedSound = mSoundMgr->CreateLoopedSound(String(type));
-	list<const LoopedSound>::type::iterator it = loopedSound.begin();
+	list<LoopedSound>::type::iterator it = loopedSound.begin();
 	while (it != loopedSound.end())
 	{
 		LoopedSound *sound = &*it;
@@ -274,11 +276,13 @@ bool MagixSoundManager::hasLoopedSound(const char *type, SceneNode *node)
 	}
 	return false;
 }
+
 void MagixSoundManager::stopAllLoopedSounds()
 {
-	list<const LoopedSound>::type::iterator it = loopedSound.begin();
+	list<LoopedSound>::type::iterator it = loopedSound.begin();
 	while (it != loopedSound.end())it = stopLoopedSound(it);
 }
+
 void MagixSoundManager::playAmbientSound(const char *type, const float &volume)
 {
 	if (!mSoundMgr)return;
@@ -325,7 +329,7 @@ void MagixSoundManager::setSoundVolume(const float &ratio)
 	if (!mSoundMgr)return;
 	soundVolume = ratio;
 
-	list<const LoopedSound>::type::iterator it = loopedSound.begin();
+	list<LoopedSound>::type::iterator it = loopedSound.begin();
 	while (it != loopedSound.end())
 	{
 		LoopedSound *sound = &*it;

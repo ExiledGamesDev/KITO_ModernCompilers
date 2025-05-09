@@ -44,8 +44,8 @@ protected:
 	unsigned short controlMode;
 	bool isLockedOn;
 	vector<Skill>::type skillSlot;
-	vector<const Skill>::type skillChangedList;
-	vector<const String>::type defaultAttackList;
+	vector<Skill>::type skillChangedList;
+	vector<String>::type defaultAttackList;
 	Skill *mCurrentSkill;
 	Skill *mNextSkill;
 	bool autoWalk;
@@ -121,7 +121,7 @@ public:
 	void setAutoAttack(MagixLiving *target, bool attackOnce = false);
 	MagixLiving* getAutoAttackTarget();
 	bool getAutoAttackOnce();
-	const vector<const Skill>::type popSkillChangedList();
+	const vector<Skill>::type popSkillChangedList();
 	bool popHPChanged();
 	bool popMaxHPChanged();
 	void setHP(const short &iMaxHP, const Real &ratio = 1);

@@ -104,15 +104,15 @@ protected:
 	bool acceptedFlag;
 	Real updateCount;
 	Real moveUpdateCount;
-	vector<const PlayerData>::type playerList;
+	vector<PlayerData>::type playerList;
 	bool playerListUpdated;
 	String targetBioUpdated;
 	NetworkMessage networkMessage;
 	bool isMainServerConnection;
 	unsigned short countsIntoGame;
-	vector<const std::pair<unsigned char,SystemAddress>>::type serverAdd;
+	vector<std::pair<unsigned char,SystemAddress>>::type serverAdd;
 	bool sentPlayerUpdate;
-	vector<const std::pair<OwnerToken,PositionInfo>>::type playerPositionQueue;
+	vector<std::pair<OwnerToken,PositionInfo>>::type playerPositionQueue;
 	std::pair<Vector3,Real> lastMovePosition;
 	Degree lastFaceDirection;
 	std::pair<bool,Quaternion> lastLookQuaternion;
@@ -130,7 +130,7 @@ public:
 	void reset();
 	void update(const FrameEvent evt);
 	const MessageID getPacketIdentifier(Packet *p);
-	const vector<const String>::type getPlayersOnline();
+	const vector<String>::type getPlayersOnline();
 	bool isPlayerOnline(String name);
 	const String getPlayerMap(String name);
 	void processPlayerToken(Packet *p);

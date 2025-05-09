@@ -18,11 +18,11 @@ protected:
 	OverlayElement *mMapTag;
 	vector<bool>::type hasPortalMarker;
 	vector<bool>::type hasGateMarker;
-	vector<const std::pair<Vector2,String>>::type portalMap;
-	vector<const std::pair<Vector2,String>>::type gateMap;
+	vector<std::pair<Vector2,String>>::type portalMap;
+	vector<std::pair<Vector2,String>>::type gateMap;
 	Real zoomRatio;
 	bool mapTagUseCharName;
-	vector<const unsigned char>::type pingUnitMarkers;
+	vector<unsigned char>::type pingUnitMarkers;
 	unsigned char pingCounter;
 	Real pingTimer;
 public:

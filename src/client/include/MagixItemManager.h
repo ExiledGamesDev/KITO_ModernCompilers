@@ -14,7 +14,7 @@ protected:
 	MagixExternalDefinitions *mDef;
 	MagixEffectsManager *mEffectsManager;
 	vector<MagixItem*>::type itemList;
-	vector<const String>::type itemStash;
+	vector<String>::type itemStash;
 public:
 	MagixItemManager();
 	~MagixItemManager();
@@ -34,6 +34,6 @@ public:
 	bool pushStash(const String &name);
 	const String getStashAt(const unsigned short &line);
 	const String popStash(const unsigned short &line);
-	const vector<const String>::type getStash();
+	const vector<String>::type getStash();
 	void clearStash();
 };

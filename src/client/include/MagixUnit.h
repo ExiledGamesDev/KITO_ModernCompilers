@@ -100,7 +100,7 @@ protected:
 	bool hasNewAttack;
 	bool hasStoppedAttack;
 	Real hitTimeout;
-	vector<const String>::type attackList;
+	vector<String>::type attackList;
 	unsigned short attackCounter;
 	Real headTurnCount;
 	bool isInWater;

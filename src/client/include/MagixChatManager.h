@@ -105,7 +105,7 @@ public:
 
 	const unsigned char getChannel();
 
-	const vector<const unsigned char>::type getOtherChannels();
+	const vector<unsigned char>::type getOtherChannels();
 
 	void saveChatLog(const String &directory, const String &filename);
 };

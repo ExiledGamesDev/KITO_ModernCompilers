@@ -1136,7 +1136,7 @@ void MagixGUI::updatePlayer(const FrameEvent &evt)
 		if (!mGameStateManager->isCampaign())mNetworkManager->sendHPUpdate();
 	}
 	//Skill changes
-	const vector<const Skill>::type tSkillChange = mUnitManager->getPlayer()->popSkillChangedList();
+	const vector<Skill>::type tSkillChange = mUnitManager->getPlayer()->popSkillChangedList();
 	for (int i = 0; i<(int)tSkillChange.size(); i++)
 	{
 		if (!mGameStateManager->isCampaign())mNetworkManager->sendSkillUpdate(tSkillChange[i].name, tSkillChange[i].stock);
@@ -1792,7 +1792,7 @@ void MagixGUI::updateItemBox()
 void MagixGUI::updateStashBox()
 {
 	if (!mBox[GUI_STASHBOX]->isVisible())return;
-	const vector<const String>::type tStash = mItemManager->getStash();
+	const vector<String>::type tStash = mItemManager->getStash();
 	vector<String>::type tList;
 	for (int i = 0; i<(int)tStash.size(); i++)
 	{
@@ -1806,7 +1806,7 @@ void MagixGUI::updatePartyBox()
 	{
 		//Update Party List
 		String tPartyList = "";
-		const vector<const std::pair<OwnerToken, String>>::type tParty = mUnitManager->getPartyMembers();
+		const vector<std::pair<OwnerToken, String>>::type tParty = mUnitManager->getPartyMembers();
 		for (int i = 0; i<(int)tParty.size(); i++)
 		{
 			tPartyList += tParty[i].second + "\n";
@@ -1955,7 +1955,7 @@ void MagixGUI::refreshFriendList()
 	//Players online
 	friendBoxList.push_back("ONLINE PLAYERS:");
 	friendBoxListButton.push_back(LISTBUTTON_NONE);
-	const vector<const String>::type tOnlineList = mNetworkManager->getPlayersOnline();
+	const vector<String>::type tOnlineList = mNetworkManager->getPlayersOnline();
 	for (int i = 0; i<(int)tOnlineList.size(); i++)
 	{
 		friendBoxList.push_back(tOnlineList[i]);
@@ -2067,7 +2067,7 @@ void MagixGUI::updateChatBox(const FrameEvent &evt)
 	if (doChannelBlink && (mHoverButton != mButton[BUTTON_TEXTINPUT3] || !leftClick))
 	{
 		bool tHasNewLine = false;
-		const vector<const unsigned char>::type tChannels = mChatManager->getOtherChannels();
+		const vector<unsigned char>::type tChannels = mChatManager->getOtherChannels();
 		for (int i = 0; i<(int)tChannels.size(); i++)
 			if (mChatManager->getHasNewLine(tChannels[i]))
 			{
@@ -2612,7 +2612,7 @@ void MagixGUI::mouseLeftDown()
 		{
 			Real tFontHeight = 0;
 			short tApparentLine = 0;
-			const vector<const String>::type tList = mItemManager->getStash();
+			const vector<String>::type tList = mItemManager->getStash();
 			const short tButtonLine = getListButtonLine(GUI_STASHBOX, SCROLLER_STASHBOX, (int)tList.size(), tFontHeight, tApparentLine);
 			if (tButtonLine == -1 || tButtonLine >= (int)tList.size())return;
 
@@ -3486,7 +3486,7 @@ void MagixGUI::toggleInputMode(bool isEnter, OverlayElement *inputBox, String de
 				{
 					if (mUnitManager->hasParty())
 					{
-						const vector<const std::pair<OwnerToken, String>>::type tParty = mUnitManager->getPartyMembers();
+						const vector<std::pair<OwnerToken, String>>::type tParty = mUnitManager->getPartyMembers();
 						for (int i = 0; i<(int)tParty.size(); i++)
 							mNetworkManager->sendPartyChat(tParty[i].first, tCaption, tType, tLipSync);
 					}
@@ -4899,7 +4899,7 @@ bool MagixGUI::isDoubleJumpOn()
 	return isDoubleJumpOnFlag;
 }
 void MagixGUI::loadCampaigns(const unsigned short &page)
-{
+{  
 	campaignList.clear();
 	mDef->loadCampaignList(campaignList);
 	for (int i = 0; i<3; i++)

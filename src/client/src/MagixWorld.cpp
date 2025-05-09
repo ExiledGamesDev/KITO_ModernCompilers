@@ -145,7 +145,7 @@ void MagixWorld::loadWorld(const String &name)
 {
 	String tTerrain = "", tGrassMat = "", tGrassMap = "", tGrassColourMap = "", tTree1 = "", tTree2 = "", tTree3 = "", tBush1 = "", tBush2 = "", tBush3 = "";
 	unsigned short tTreeCount;
-	vector<const std::pair<String, bool>>::type tTreesFilename, tBushesFilename, tFloatingBushesFilename;
+	vector<std::pair<String, bool>>::type tTreesFilename, tBushesFilename, tFloatingBushesFilename;
 	String tCritterSpawnFilename = "";
 	tTreesFilename.clear();
 	tBushesFilename.clear();
@@ -1130,7 +1130,7 @@ const unsigned short MagixWorld::getCritterSpawnLimit()
 {
 	return critterSpawnLimit;
 }
-const vector<const WorldCritter>::type MagixWorld::getCritterSpawnList()
+const vector<WorldCritter>::type MagixWorld::getCritterSpawnList()
 {
 	return critterSpawnList;
 }

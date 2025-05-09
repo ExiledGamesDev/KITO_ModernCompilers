@@ -67,7 +67,7 @@ protected:
 	float musicVolume;
 	float guiVolume;
 	float soundVolume;
-	list<const LoopedSound>::type loopedSound;
+	list<LoopedSound>::type loopedSound;
 	Real musicSilenceTimeout;
 	bool isRandomPlaylist;
 	vector<String>::type musicList;
@@ -90,7 +90,7 @@ public:
 	void playGUISound(const char *type);
 	void playSound(const char *type, SceneNode *node = 0);
 	void playLoopedSound(const char *type, SceneNode *node, const float &volume = 1, const Real &delay = 0);
-	const list<const LoopedSound>::type::iterator stopLoopedSound(const list<const LoopedSound>::type::iterator &it);
+	const list<LoopedSound>::type::iterator stopLoopedSound(const list<LoopedSound>::type::iterator &it);
 	void stopLoopedSoundByNode(SceneNode *node, const char *type = "");
 	bool hasLoopedSound(const char *type, SceneNode *node = 0);
 	void stopAllLoopedSounds();

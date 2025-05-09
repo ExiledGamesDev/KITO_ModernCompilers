@@ -394,7 +394,7 @@ const unsigned short MagixCritterManager::getNextEmptyID(const unsigned short &s
 	while (!tFound)
 	{
 		tFound = true;
-		for (vector<const unsigned short>::type::iterator it = sentID.begin(); it != sentID.end(); it++)
+		for (vector<unsigned short>::type::iterator it = sentID.begin(); it != sentID.end(); it++)
 		{
 			if (*it == tID)
 			{
@@ -435,13 +435,13 @@ const vector<MagixCritter*>::type MagixCritterManager::popDeadQueue()
 	deadQueue.clear();
 	return tList;
 }
-const vector<const HitInfo>::type MagixCritterManager::popHitQueue()
+const vector<HitInfo>::type MagixCritterManager::popHitQueue()
 {
-	const vector<const HitInfo>::type tList = hitQueue;
+	const vector<HitInfo>::type tList = hitQueue;
 	hitQueue.clear();
 	return tList;
 }
-void MagixCritterManager::pushHitQueue(const HitInfo &info)
+void MagixCritterManager::pushHitQueue(HitInfo &info)
 {
 	hitQueue.push_back(info);
 }
@@ -497,7 +497,7 @@ void MagixCritterManager::pushSentID(const unsigned short &iID)
 }
 void MagixCritterManager::popSentID(const unsigned short &iID)
 {
-	for (vector<const unsigned short>::type::iterator it = sentID.begin(); it != sentID.end(); it++)
+	for (vector<unsigned short>::type::iterator it = sentID.begin(); it != sentID.end(); it++)
 	{
 		if (*it == iID)
 		{

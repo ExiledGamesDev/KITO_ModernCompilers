@@ -390,10 +390,13 @@ const bool MagixExternalDefinitions::loadBanFile(unsigned short &numDays)
 	}
 	return true;
 }
-vector<const String>::type MagixExternalDefinitions::XORInternal(const String inFile, bool preChecksum)
+
+// original author claimed this as "encryption" (ciphering)
+// sure but where's your bytes ? the salting ? sure there's a key but... yeah xor lel
+vector<String>::type MagixExternalDefinitions::XORInternal(const String inFile, bool preChecksum)
 {
 	String line = "", prevline;
-	vector<const String>::type tBuffer;
+	vector<String>::type tBuffer;
 	unsigned long tChecksum = 0;
 	DataStreamPtr stream = Root::getSingleton().openFileStream(inFile);
 
@@ -438,9 +441,11 @@ const String MagixExternalDefinitions::XOR7(const String &input, unsigned long *
 	}
 	return output;
 }
+
+// same comment about "encryption" / ciphering : very badly done
 bool MagixExternalDefinitions::XOR7FileGen(const String &infile, const String &outfile, bool decrypt, bool checksum)
 {
-	vector<const String>::type tBuffer;
+	vector<String>::type tBuffer;
 	unsigned long tChecksum = 0;
 	std::ifstream inFile;
 	inFile.open(infile.c_str(), (decrypt ? std::ios_base::binary : std::ifstream::in));
@@ -607,7 +612,7 @@ bool MagixExternalDefinitions::loadCampaign(const String &name, CampaignEventLis
 			if (tName == name)
 			{
 				fileName = tLine[1];
-				const vector<const String>::type tEvent;
+				vector<String>::type tEvent;
 				loadCampaignScript(tLine[1], tEvent, data, 0, true);
 				return true;
 			}
@@ -615,7 +620,7 @@ bool MagixExternalDefinitions::loadCampaign(const String &name, CampaignEventLis
 	}
 	return (customCampaigns ? false : loadCampaign(name, data, fileName, true));
 }
-void MagixExternalDefinitions::loadCampaignScript(const String &filename, const vector<const String>::type &nextEvent, CampaignEventList &data, const unsigned short &eventCount, bool loadFirstSection)
+void MagixExternalDefinitions::loadCampaignScript(const String &filename, vector<String>::type &nextEvent, CampaignEventList &data, const unsigned short &eventCount, bool loadFirstSection)
 {
 	unsigned int tSize = 0;
 	char *tBuffer;
@@ -1029,7 +1034,7 @@ void MagixExternalDefinitions::loadItems(const String &filename, const bool decr
 
 	if (decrypt)
 	{
-		vector<const String>::type stream = XORInternal(filename);
+		vector<String>::type stream = XORInternal(filename);
 		String line;
 		for (int i = 0; i < (int)stream.size(); i++)
 		{
@@ -1251,6 +1256,8 @@ bool MagixExternalDefinitions::hasTailMark(const unsigned char &id)
 {
 	return (id<maxTailMarks);
 }
+
+// what was the purpose of that code ?
 /*void processObjects(const String &filename)
 {
 long tSize = 0;
@@ -1337,7 +1344,8 @@ const String tBuffer2 = "#";
 outFile.write(tBuffer2.c_str(),(int)tBuffer2.length());
 outFile.close();
 }*/
-void MagixExternalDefinitions::loadWeatherCycle(const String &type, vector<const WeatherEvent>::type &list, bool isCustom)
+
+void MagixExternalDefinitions::loadWeatherCycle(const String &type, vector<WeatherEvent>::type &list, bool isCustom)
 {
 	String tFilename = "";
 	list.clear();
@@ -1630,13 +1638,13 @@ const Critter MagixExternalDefinitions::getCritter(const String &type)
 	}
 	return Critter();
 }
-const vector<const std::pair<String, Real>>::type MagixExternalDefinitions::getCritterDropList(const String &type)
+const vector<std::pair<String, Real>>::type MagixExternalDefinitions::getCritterDropList(const String &type)
 {
 	for (int i = 0; i<(int)critterList.size(); i++)
 	{
 		if (critterList[i].type == type)return critterList[i].dropList;
 	}
-	const vector<const std::pair<String, Real>>::type tList;
+	const vector<std::pair<String, Real>>::type tList;
 	return tList;
 }
 const std::pair<String, unsigned char> MagixExternalDefinitions::getCritterSkillDrop(const String &type)
@@ -1692,7 +1700,7 @@ const unsigned char MagixExternalDefinitions::getCritterRandomSpecificAttack(con
 	{
 		if (critterList[i].type == type)
 		{
-			vector<const unsigned char>::type tList;
+			vector<unsigned char>::type tList;
 			for (int j = 0; j<(int)critterList[i].attackList.size(); j++)
 				if (getNonHeal^critterList[i].attackList[j].hitAlly)tList.push_back(j + 1);
 			if (tList.size() == 0)return 0;
@@ -1719,8 +1727,8 @@ const std::pair<CritterAttack, String> MagixExternalDefinitions::getCritterAttac
 }
 bool MagixExternalDefinitions::loadCritterSpawnList(const String &worldName,
 	unsigned short &limit,
-	vector<const WorldCritter>::type &list,
-	vector<const std::pair<Vector3, Vector3>>::type &roamArea,
+	vector<WorldCritter>::type &list,
+	vector<std::pair<Vector3, Vector3>>::type &roamArea,
 	const String &customFilename)
 {
 	//Hardcoded goodness
@@ -1736,7 +1744,7 @@ bool MagixExternalDefinitions::loadCritterSpawnList(const String &worldName,
 	if (loadCustomCritterSpawnList("media/terrains/" + worldName + "/" + customFilename, limit, list, roamArea))return true;
 	return false;
 }
-bool MagixExternalDefinitions::loadCritterSpawnListFile(const String &filename, const String &worldName, unsigned short &limit, vector<const WorldCritter>::type &list, vector<const std::pair<Vector3, Vector3>>::type &roamArea)
+bool MagixExternalDefinitions::loadCritterSpawnListFile(const String &filename, const String &worldName, unsigned short &limit, vector<WorldCritter>::type &list, vector<std::pair<Vector3, Vector3>>::type &roamArea)
 {
 	const String tFilename = filename + ".cfg";
 	if (!XOR7FileGen(filename, tFilename, true, true))return false;
@@ -1783,7 +1791,7 @@ bool MagixExternalDefinitions::loadCritterSpawnListFile(const String &filename, 
 	_unlink(tFilename.c_str());
 	return false;
 }
-bool MagixExternalDefinitions::loadCustomCritterSpawnList(const String &filename, unsigned short &limit, vector<const WorldCritter>::type &list, vector<const std::pair<Vector3, Vector3>>::type &roamArea)
+bool MagixExternalDefinitions::loadCustomCritterSpawnList(const String &filename, unsigned short &limit, vector<WorldCritter>::type &list, vector<std::pair<Vector3, Vector3>>::type &roamArea)
 {
 	unsigned int tSize = 0;
 	char *tBuffer;

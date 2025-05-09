@@ -46,8 +46,8 @@ protected:
 	String mapEffect;
 	int staticGeometryX;
 	int staticGeometryY;
-	vector<const WorldCritter>::type critterSpawnList;
-	vector<const std::pair<Vector3,Vector3>>::type critterRoamAreaList;
+	vector<WorldCritter>::type critterSpawnList;
+	vector<std::pair<Vector3,Vector3>>::type critterRoamAreaList;
 	unsigned short critterSpawnLimit;
 public:
 	MagixWorld();
@@ -80,7 +80,7 @@ public:
 	void buildStaticGeometry();
 	void destroyStaticGeometry();
 	const unsigned short getCritterSpawnLimit();
-	const vector<const WorldCritter>::type getCritterSpawnList();
+	const vector<WorldCritter>::type getCritterSpawnList();
 	const WorldCritter getCritterSpawnList(const unsigned short &iID);
 	const std::pair<Vector3, Vector3> getCritterRoamArea(const unsigned short &iID);
 	void clearCritterSpawnList();

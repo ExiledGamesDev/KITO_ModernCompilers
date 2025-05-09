@@ -1360,9 +1360,9 @@ void MagixUnitManager::deleteCritter(const unsigned short &iID)
 	if (mPlayerTarget == critter)setPlayerTarget(0);
 	mCritterManager->deleteCritter(iID);
 }
-const vector<const std::pair<String, Vector2>>::type MagixUnitManager::popItemDropQueue()
+const vector<std::pair<String, Vector2>>::type MagixUnitManager::popItemDropQueue()
 {
-	const vector<const std::pair<String, Vector2>>::type tList = itemDropQueue;
+	const vector<std::pair<String, Vector2>>::type tList = itemDropQueue;
 	itemDropQueue.clear();
 	return tList;
 }
@@ -1384,7 +1384,7 @@ void MagixUnitManager::rewardCritter(MagixCritter *critter)
 {
 	if (!critter)return;
 	//Item drops
-	const vector<const std::pair<String, Real>>::type tDropList = mDef->getCritterDropList(critter->getCritterType());
+	const vector<std::pair<String, Real>>::type tDropList = mDef->getCritterDropList(critter->getCritterType());
 	for (int j = 0; j<(int)tDropList.size(); j++)
 		if (Math::UnitRandom()<tDropList[j].second)
 		{
@@ -1415,14 +1415,14 @@ bool MagixUnitManager::popPlayerHasNewAttack()
 	playerHasNewAttack = false;
 	return tFlag;
 }
-void MagixUnitManager::addPartyMember(const OwnerToken &token, const String &name)
+void MagixUnitManager::addPartyMember(OwnerToken &token, const String &name)
 {
 	partyMembers.push_back(std::pair<OwnerToken, String>(token, name));
 	partyChanged = true;
 }
 bool MagixUnitManager::removePartyMember(const String &name)
 {
-	for (vector<const std::pair<OwnerToken, String>>::type::iterator it = partyMembers.begin(); it != partyMembers.end(); it++)
+	for (vector<std::pair<OwnerToken, String>>::type::iterator it = partyMembers.begin(); it != partyMembers.end(); it++)
 	{
 		const std::pair<OwnerToken, String> tMember = *it;
 		if (tMember.second == name)
@@ -1443,7 +1443,7 @@ bool MagixUnitManager::isPartyFull()
 {
 	return (partyMembers.size() >= MAX_PARTYMEMBERS);
 }
-const vector<const std::pair<OwnerToken, String>>::type MagixUnitManager::getPartyMembers()
+const vector<std::pair<OwnerToken, String>>::type MagixUnitManager::getPartyMembers()
 {
 	return partyMembers;
 }
@@ -1474,19 +1474,22 @@ const OwnerToken MagixUnitManager::getPartyInviter()
 {
 	return partyInviter;
 }
+// we might need to reset this to a non const, for now kept as is ?
 const std::pair<OwnerToken, String> MagixUnitManager::getPartyMember(const OwnerToken &token)
 {
 	for (int i = 0; i<(int)partyMembers.size(); i++)
 		if (partyMembers[i].first == token)return partyMembers[i];
 	return std::pair<OwnerToken, String>(0, "");
 }
-const vector<const HitInfo>::type MagixUnitManager::popHitQueue()
+const vector<HitInfo>::type MagixUnitManager::popHitQueue()
 {
-	const vector<const HitInfo>::type tList = hitQueue;
+	// example of a const removal : we dont need constant in a vector if the whole vector IS a constant we can store to
+	// ESPECIALLY when we clear !!!
+	const vector<HitInfo>::type tList = hitQueue;
 	hitQueue.clear();
 	return tList;
 }
-void MagixUnitManager::pushHitQueue(const HitInfo &info)
+void MagixUnitManager::pushHitQueue(HitInfo &info)
 {
 	hitQueue.push_back(info);
 }

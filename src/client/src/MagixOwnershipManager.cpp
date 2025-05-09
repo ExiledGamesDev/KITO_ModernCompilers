@@ -81,7 +81,7 @@ void MagixOwnershipManager::updateCritters(const FrameEvent &evt)
 	//Spawn Critters
 	if (spawnTimer <= 0 && mCritterManager->getNumCritters()<mWorld->getCritterSpawnLimit())
 	{
-		const vector<const WorldCritter>::type tList = mWorld->getCritterSpawnList();
+		const vector<WorldCritter>::type tList = mWorld->getCritterSpawnList();
 		if (tList.size()>0)
 		{
 			unsigned short tID = (unsigned short)Math::RangeRandom(0, (Real)tList.size());
@@ -299,14 +299,14 @@ void MagixOwnershipManager::updateCritters(const FrameEvent &evt)
 	if (!mGameStateManager->isCampaign())
 	{
 		//HitInfo
-		const vector<const HitInfo>::type tCritterHitList = mCritterManager->popHitQueue();
+		const vector<HitInfo>::type tCritterHitList = mCritterManager->popHitQueue();
 		for (int i = 0; i<(int)tCritterHitList.size(); i++)
 		{
 			mNetworkManager->sendCritterHit(tCritterHitList[i].ID, tCritterHitList[i].hp, tCritterHitList[i].force);
 			if (!tCritterHitList[i].isMine)mNetworkManager->sendCritterTakeover(tCritterHitList[i].ID);
 		}
 		//Itemdrop
-		const vector<const std::pair<String, Vector2>>::type tItemList = mUnitManager->popItemDropQueue();
+		const vector<std::pair<String, Vector2>>::type tItemList = mUnitManager->popItemDropQueue();
 		for (int i = 0; i<(int)tItemList.size(); i++)
 		{
 			const Vector2 tPos = tItemList[i].second;
@@ -341,7 +341,7 @@ void MagixOwnershipManager::updateUnits(const FrameEvent &evt)
 	//HitInfo
 	if (!mGameStateManager->isCampaign())
 	{
-		const vector<const HitInfo>::type tUnitHitList = mUnitManager->popHitQueue();
+		const vector<HitInfo>::type tUnitHitList = mUnitManager->popHitQueue();
 		for (int i = 0; i<(int)tUnitHitList.size(); i++)
 		{
 			mNetworkManager->sendPlayerHit((OwnerToken)(tUnitHitList[i].ID), tUnitHitList[i].hp, tUnitHitList[i].force);

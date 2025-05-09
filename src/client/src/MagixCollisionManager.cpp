@@ -271,7 +271,7 @@ Portal* MagixCollisionManager::getPortalHit(const AxisAlignedBox &target)
 	}
 	return 0;
 }
-void MagixCollisionManager::getPortalMap(vector<const std::pair<Vector2, String>>::type &map)
+void MagixCollisionManager::getPortalMap(vector<std::pair<Vector2, String>>::type &map)
 {
 	map.clear();
 	list<Portal>::type::iterator it = portal.begin();
@@ -377,7 +377,7 @@ Gate* MagixCollisionManager::getGateHit(const AxisAlignedBox &target)
 	}
 	return 0;
 }
-void MagixCollisionManager::getGateMap(vector<const std::pair<Vector2, String>>::type &map)
+void MagixCollisionManager::getGateMap(vector<std::pair<Vector2, String>>::type &map)
 {
 	map.clear();
 	list<Gate>::type::iterator it = gate.begin();

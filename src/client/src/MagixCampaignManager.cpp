@@ -938,9 +938,9 @@ void MagixCampaignManager::processEvent(const CampaignEvent &cEvent, bool isInit
 	}
 	if (!tProgressChanged && !isInitialize && !sUnit)progress++;
 }
-void MagixCampaignManager::registerEventConditions(const CampaignEvent &cEvent, ScriptedUnit *sUnit)
+void MagixCampaignManager::registerEventConditions(CampaignEvent &cEvent, ScriptedUnit *sUnit)
 {
-	vector<const String>::type tLine;
+	vector<String>::type tLine;
 	for (int i = 0; i<(int)cEvent.size(); i++)
 	{
 		if (compare(cEvent[i].first, "EventCondition"))tLine.push_back(cEvent[i].second);
@@ -950,7 +950,7 @@ void MagixCampaignManager::registerEventConditions(const CampaignEvent &cEvent, 
 }
 void MagixCampaignManager::checkEventCondition(ScriptedUnit *sUnit)
 {
-	const vector<vector<const String>::type>::type tList = sUnit ? sUnit->eventConditionList : eventConditionList;
+	const vector<vector<String>::type>::type tList = sUnit ? sUnit->eventConditionList : eventConditionList;
 	unsigned short listID = -1;
 	for (int i = 0; i<(int)tList.size(); i++)
 	{

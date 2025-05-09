@@ -1,3 +1,4 @@
+// Purring Bytes 2025 : one of the major change is removing const instances as modern c++ is NOT flexible with allowing constants to be modified.
 #pragma once
 
 #include "MagixGameStateManager.h"
@@ -69,13 +70,13 @@ protected:
 	bool playerTargetChanged;
 	bool shouldNameTagsBeVisible;
 	MapChangeData mapChange;
-	vector<const std::pair<String,Vector2>>::type itemDropQueue;
+	vector<std::pair<String,Vector2>>::type itemDropQueue;
 	String pickupText;
 	bool playerHasNewAttack;
-	vector<const std::pair<OwnerToken,String>>::type partyMembers;
+	vector<std::pair<OwnerToken,String>>::type partyMembers;
 	bool partyChanged;
 	OwnerToken partyInviter;
-	vector<const HitInfo>::type hitQueue;
+	vector<HitInfo>::type hitQueue;
 	TameData tameFlag;
 
 public:
@@ -144,23 +145,25 @@ public:
 	MagixCritter* createCritter(const unsigned short &iID, const unsigned char &worldID, const Vector3 &position, const short &owner = -1);
 	MagixCritter* createCritter(const unsigned short &iID, const String &type, const Vector3 &position, const short &owner = -1);
 	void deleteCritter(const unsigned short &iID);
-	const vector<const std::pair<String, Vector2>>::type popItemDropQueue();
+	const vector<std::pair<String, Vector2>>::type popItemDropQueue();
 	const String popPickupText();
 	void killAndRewardCritter(MagixCritter *critter, bool imTheKiller = true);
 	void rewardCritter(MagixCritter *critter);
 	bool popPlayerHasNewAttack();
-	void addPartyMember(const OwnerToken &token, const String &name);
+
+	// take a note that party member functions might need a fix !
+	void addPartyMember(OwnerToken &token, const String &name);
 	bool removePartyMember(const String &name);
 	void clearPartyMembers();
 	bool isPartyFull();
-	const vector<const std::pair<OwnerToken, String>>::type getPartyMembers();
+	const vector<std::pair<OwnerToken, String>>::type getPartyMembers();
 	bool isPartyMember(MagixUnit *unit);
 	bool popPartyChanged();
 	bool hasParty();
 	void setPartyInviter(const OwnerToken &token);
 	const OwnerToken getPartyInviter();
 	const std::pair<OwnerToken, String> getPartyMember(const OwnerToken &token);
-	const vector<const HitInfo>::type popHitQueue();
-	void pushHitQueue(const HitInfo &info);
+	const vector<HitInfo>::type popHitQueue();
+	void pushHitQueue(HitInfo &info);
 	const TameData popTameFlag();
 };

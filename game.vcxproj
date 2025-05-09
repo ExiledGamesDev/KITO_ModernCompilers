@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
@@ -13,19 +13,20 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{A65DDD92-FF20-4B1F-AE83-CD71FD4ECCC8}</ProjectGuid>
     <RootNamespace>ogremagix</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>NotSet</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='XDebug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>NotSet</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -61,7 +62,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>$(SolutionDir)config;$(SolutionDir)src\client\include;$(SolutionDir)deps\fmod-4.02\include;$(SolutionDir)deps\zziplib-0.13.57;$(SolutionDir)deps\ogre-paged-1.1.4\include;$(SolutionDir)deps\OgreSDK_vs12_v1-7-4\include\OGRE;$(SolutionDir)deps\OgreSDK_vs12_v1-7-4\include\OIS;$(SolutionDir)deps\OgreSDK_vs12_v1-7-4\boost_1_57;$(SolutionDir)deps\RakNet-3.25\Source;$(SolutionDir)deps\ogre-paged-1.1.4\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)config;$(SolutionDir)src\client\include;$(SolutionDir)deps\fmod-4.02\include;$(SolutionDir)deps\zziplib-0.13.57;$(SolutionDir)deps\ogre-paged-1.1.4\include;$(SolutionDir)deps\OgreSDKvs2022\include\OGRE;$(SolutionDir)deps\OgreSDKvs2022\include\OIS;$(SolutionDir)deps\RakNet-3.25\Source;$(SolutionDir)deps\ogre-paged-1.1.4\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MinimalRebuild>true</MinimalRebuild>
@@ -79,10 +80,10 @@
       <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>zlib.lib;zziplib.lib;fmodex_vc.lib;OIS.lib;RakNet_LibStatic_Release_Win32.lib;PagedGeometry.lib;OgreMain.lib;libboost_thread-vc120-mt-gd-1_57.lib;libboost_date_time-vc120-mt-gd-1_57.lib;DbgHelp.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlib.lib;zziplib.lib;fmodex_vc.lib;OIS.lib;RakNetLibStatic.lib;PagedGeometry.lib;OgreMain.lib;DbgHelp.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>NotSet</ShowProgress>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalLibraryDirectories>$(SolutionDir)deps\zziplib-0.13.57\lib\Release;$(SolutionDir)deps\fmod-4.02\lib;$(SolutionDir)deps\OgreSDK_vs12_v1-7-4\boost_1_57\lib;$(SolutionDir)deps\OgreSDK_vs12_v1-7-4\lib\release;$(SolutionDir)deps\OgreSDK_vs12_v1-7-4\lib\release\opt;$(SolutionDir)deps\RakNet-3.25\Lib;$(SolutionDir)deps\ogre-paged-1.1.4\lib\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)deps\zziplib-0.13.57\lib\Release;$(SolutionDir)deps\fmod-4.02\lib;$(SolutionDir)deps\OgreSDKvs2022\lib\release;$(SolutionDir)deps\OgreSDKvs2022\release\opt;$(SolutionDir)deps\RakNet-3.25\Lib;$(SolutionDir)deps\ogre-paged-1.1.4\lib\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -133,7 +134,7 @@ copy "$(SolutionDir)static\client\*.cfg" "$(SolutionDir)build\client\"
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalIncludeDirectories>$(SolutionDir)config;$(SolutionDir)src\client\include;$(SolutionDir)deps\fmod-4.02\include;$(SolutionDir)deps\zziplib-0.13.57;$(SolutionDir)deps\ogre-paged-1.1.4\include;$(SolutionDir)deps\OgreSDK_vs12_v1-7-4\include\OGRE;$(SolutionDir)deps\OgreSDK_vs12_v1-7-4\include\OIS;$(SolutionDir)deps\OgreSDK_vs12_v1-7-4\boost_1_57;$(SolutionDir)deps\RakNet-3.25\Source;$(SolutionDir)deps\ogre-paged-1.1.4\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)config;$(SolutionDir)src\client\include;$(SolutionDir)deps\fmod-4.02\include;$(SolutionDir)deps\zziplib-0.13.57;$(SolutionDir)deps\ogre-paged-1.1.4\include;$(SolutionDir)deps\OgreSDKvs2022\include\OGRE;$(SolutionDir)deps\OgreSDKvs2022\include\OIS;$(SolutionDir)deps\RakNet-3.25\Source;$(SolutionDir)deps\ogre-paged-1.1.4\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MinimalRebuild>true</MinimalRebuild>
@@ -150,10 +151,10 @@ copy "$(SolutionDir)static\client\*.cfg" "$(SolutionDir)build\client\"
       <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>zlibd.lib;zziplibd.lib;fmodex_vc.lib;OIS_d.lib;RakNet_LibStatic_Debug_Win32.lib;PagedGeometry.lib;OgreMain_d.lib;libboost_thread-vc120-mt-gd-1_57.lib;libboost_date_time-vc120-mt-gd-1_57.lib;DbgHelp.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>zlibd.lib;zziplibd.lib;fmodex_vc.lib;OIS_d.lib;RakNetLibStaticDebug.lib;PagedGeometry.lib;OgreMain_d.lib;DbgHelp.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>LinkVerbose</ShowProgress>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalLibraryDirectories>$(SolutionDir)deps\zziplib-0.13.57\lib\Debug;$(SolutionDir)deps\fmod-4.02\lib;$(SolutionDir)deps\OgreSDK_vs12_v1-7-4\boost_1_57\lib;$(SolutionDir)deps\OgreSDK_vs12_v1-7-4\lib\debug;$(SolutionDir)deps\OgreSDK_vs12_v1-7-4\lib\debug\opt;$(SolutionDir)deps\RakNet-3.25\Lib;$(SolutionDir)deps\ogre-paged-1.1.4\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)deps\zziplib-0.13.57\lib\Debug;$(SolutionDir)deps\fmod-4.02\lib;$(SolutionDir)deps\OgreSDKvs2022\lib\debug;$(SolutionDir)deps\OgreSDKvs2022\lib\debug\opt;$(SolutionDir)deps\RakNet-3.25\Lib;$(SolutionDir)deps\ogre-paged-1.1.4\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>

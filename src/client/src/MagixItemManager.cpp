@@ -175,7 +175,7 @@ const String MagixItemManager::popStash(const unsigned short &line)
 {
 	String tItem = "";
 	unsigned short tCount = 0;
-	for (vector<const String>::type::iterator it = itemStash.begin(); it != itemStash.end(); it++)
+	for (vector<String>::type::iterator it = itemStash.begin(); it != itemStash.end(); it++)
 	{
 		if (tCount == line)
 		{
@@ -187,7 +187,7 @@ const String MagixItemManager::popStash(const unsigned short &line)
 	}
 	return tItem;
 }
-const vector<const String>::type MagixItemManager::getStash()
+const vector<String>::type MagixItemManager::getStash()
 {
 	return itemStash;
 }

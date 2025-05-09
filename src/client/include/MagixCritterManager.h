@@ -24,10 +24,10 @@ protected:
 	vector<MagixCritter*>::type deadQueue;
 	vector<MagixCritter*>::type decisionQueue;
 	vector<MagixCritter*>::type stationaryQueue;
-	vector<const HitInfo>::type hitQueue;
+	vector<HitInfo>::type hitQueue;
 	MagixLiving *mPlayerTarget;
 	vector<MagixCritter*>::type myCritters;
-	vector<const unsigned short>::type sentID;
+	vector<unsigned short>::type sentID;
 	unsigned short critterCount;
 	String weatherEffectRequest;
 public:
@@ -106,9 +106,9 @@ public:
 
 	const vector<MagixCritter*>::type popDeadQueue();
 
-	const vector<const HitInfo>::type popHitQueue();
+	const vector<HitInfo>::type popHitQueue();
 
-	void pushHitQueue(const HitInfo &info);
+	void pushHitQueue(HitInfo &info);
 
 	const vector<MagixCritter*>::type popDecisionQueue();
 

@@ -449,9 +449,9 @@ const unsigned char MagixChatManager::getChannel()
 {
 	return channel;
 }
-const vector<const unsigned char>::type MagixChatManager::getOtherChannels()
+const vector<unsigned char>::type MagixChatManager::getOtherChannels()
 {
-	vector<const unsigned char>::type tChannels;
+	vector<unsigned char>::type tChannels;
 	for (int i = 0; i<MAX_CHANNELS; i++)
 		if (i != channel)tChannels.push_back(i);
 	return tChannels;

@@ -535,9 +535,9 @@ bool MagixPlayer::getAutoAttackOnce()
 {
 	return autoAttackOnce;
 }
-const vector<const Skill>::type MagixPlayer::popSkillChangedList()
+const vector<Skill>::type MagixPlayer::popSkillChangedList()
 {
-	const vector<const Skill>::type tList = skillChangedList;
+	const vector<Skill>::type tList = skillChangedList;
 	skillChangedList.clear();
 	return tList;
 }
