@@ -4486,7 +4486,7 @@ bool RakPeer::RunUpdateCycle( void )
 
 			if ( gotData == -1 )
 			{
-/*#ifdef _WIN32
+#ifdef _WIN32
 				if ( errorCode == WSAECONNRESET )
 				{
 					gotData=false;
@@ -4518,7 +4518,6 @@ bool RakPeer::RunUpdateCycle( void )
 					return false;
 				}
 #endif
-				*/
 			}
 
 			if ( endThreads )
